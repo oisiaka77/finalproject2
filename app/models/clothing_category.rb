@@ -8,4 +8,9 @@
 #  updated_at    :datetime         not null
 #
 class ClothingCategory < ApplicationRecord
+
+  has_many(:items, { :class_name => "Item", :foreign_key => "clothing_category_id", :dependent => :destroy })
+
+
+
 end

@@ -9,4 +9,15 @@
 #  sender_id   :integer
 #
 class Friendship < ApplicationRecord
+
+
+  belongs_to(:sender, { :required => true, :class_name => "UserInfo", :foreign_key => "sender_id" })
+
+  belongs_to(:receiver, { :required => true, :class_name => "UserInfo", :foreign_key => "receiver_id" })
+
+  validates(:sender_id, { :presence => true })
+
+  validates(:sender_id, { :uniqueness => true })
+
+
 end

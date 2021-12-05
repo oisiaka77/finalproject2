@@ -9,4 +9,10 @@
 #  updated_at :datetime         not null
 #
 class Store < ApplicationRecord
+
+
+
+
+  has_many(:items, { :class_name => "Item", :foreign_key => "store_id", :dependent => :destroy })
+  
 end
