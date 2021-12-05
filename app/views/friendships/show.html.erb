@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Friendship #<%= @the_friendship.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/friendships">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_friendship/<%= @the_friendship.id %>">
+          Delete friendship
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @the_friendship.sender_id %>
+      </dd>
+
+      <dt>
+        Receiver
+      </dt>
+      <dd>
+        <%= @the_friendship.receiver_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_friendship.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_friendship.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit friendship
+    </h2>
+
+    <form action="/modify_friendship/<%= @the_friendship.id %>"  method="post" >
+      <div>
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" value="<%= @the_friendship.sender_id %>">
+      </div>
+
+      <div>
+        <label for="receiver_id_box">
+          Receiver
+        </label>
+
+        <input type="text" id="receiver_id_box" name="query_receiver_id" value="<%= @the_friendship.receiver_id %>">
+      </div>
+
+      <button>
+        Update friendship
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

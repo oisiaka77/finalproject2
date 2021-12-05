@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all stores
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new store
+    </h2>
+
+    <form action="/insert_store" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="address_box">
+          Address
+        </label>
+
+        <input type="text" id="address_box" name="query_address">
+      </div>
+
+      <button>
+        Create store
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Address
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_stores.each do |a_store| %>
+      <tr>
+        <td>
+          <%= a_store.id %>
+        </td>
+
+        <td>
+          <%= a_store.name %>
+        </td>
+
+        <td>
+          <%= a_store.address %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_store.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_store.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/stores/<%= a_store.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

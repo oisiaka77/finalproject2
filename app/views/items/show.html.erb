@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Item #<%= @the_item.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/items">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_item/<%= @the_item.id %>">
+          Delete item
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_item.description %>
+      </dd>
+
+      <dt>
+        Price
+      </dt>
+      <dd>
+        <%= @the_item.price %>
+      </dd>
+
+      <dt>
+        Store
+      </dt>
+      <dd>
+        <%= @the_item.store_id %>
+      </dd>
+
+      <dt>
+        Item url
+      </dt>
+      <dd>
+        <%= @the_item.item_url %>
+      </dd>
+
+      <dt>
+        Clothing category
+      </dt>
+      <dd>
+        <%= @the_item.clothing_category_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_item.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_item.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit item
+    </h2>
+
+    <form action="/modify_item/<%= @the_item.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_item.description %>">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price" value="<%= @the_item.price %>">
+      </div>
+
+      <div>
+        <label for="store_id_box">
+          Store
+        </label>
+
+        <input type="text" id="store_id_box" name="query_store_id" value="<%= @the_item.store_id %>">
+      </div>
+
+      <div>
+        <label for="item_url_box">
+          Item url
+        </label>
+
+        <input type="text" id="item_url_box" name="query_item_url" value="<%= @the_item.item_url %>">
+      </div>
+
+      <div>
+        <label for="clothing_category_id_box">
+          Clothing category
+        </label>
+
+        <input type="text" id="clothing_category_id_box" name="query_clothing_category_id" value="<%= @the_item.clothing_category_id %>">
+      </div>
+
+      <button>
+        Update item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

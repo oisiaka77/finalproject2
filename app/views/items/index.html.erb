@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all items
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new item
+    </h2>
+
+    <form action="/insert_item" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <div>
+        <label for="store_id_box">
+          Store
+        </label>
+
+        <input type="text" id="store_id_box" name="query_store_id">
+      </div>
+
+      <div>
+        <label for="item_url_box">
+          Item url
+        </label>
+
+        <input type="text" id="item_url_box" name="query_item_url">
+      </div>
+
+      <div>
+        <label for="clothing_category_id_box">
+          Clothing category
+        </label>
+
+        <input type="text" id="clothing_category_id_box" name="query_clothing_category_id">
+      </div>
+
+      <button>
+        Create item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Store
+        </th>
+
+        <th>
+          Item url
+        </th>
+
+        <th>
+          Clothing category
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_items.each do |an_item| %>
+      <tr>
+        <td>
+          <%= an_item.id %>
+        </td>
+
+        <td>
+          <%= an_item.description %>
+        </td>
+
+        <td>
+          <%= an_item.price %>
+        </td>
+
+        <td>
+          <%= an_item.store_id %>
+        </td>
+
+        <td>
+          <%= an_item.item_url %>
+        </td>
+
+        <td>
+          <%= an_item.clothing_category_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_item.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_item.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/items/<%= an_item.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

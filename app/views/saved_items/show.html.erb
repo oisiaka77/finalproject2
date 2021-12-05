@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Saved item #<%= @the_saved_item.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/saved_items">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_saved_item/<%= @the_saved_item.id %>">
+          Delete saved item
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_saved_item.user_id %>
+      </dd>
+
+      <dt>
+        Item
+      </dt>
+      <dd>
+        <%= @the_saved_item.item_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_saved_item.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_saved_item.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit saved item
+    </h2>
+
+    <form action="/modify_saved_item/<%= @the_saved_item.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_saved_item.user_id %>">
+      </div>
+
+      <div>
+        <label for="item_id_box">
+          Item
+        </label>
+
+        <input type="text" id="item_id_box" name="query_item_id" value="<%= @the_saved_item.item_id %>">
+      </div>
+
+      <button>
+        Update saved item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

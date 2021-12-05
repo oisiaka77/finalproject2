@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Clothing category #<%= @the_clothing_category.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/clothing_categories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_clothing_category/<%= @the_clothing_category.id %>">
+          Delete clothing category
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Category name
+      </dt>
+      <dd>
+        <%= @the_clothing_category.category_name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_clothing_category.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_clothing_category.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit clothing category
+    </h2>
+
+    <form action="/modify_clothing_category/<%= @the_clothing_category.id %>"  method="post" >
+      <div>
+        <label for="category_name_box">
+          Category name
+        </label>
+
+        <input type="text" id="category_name_box" name="query_category_name" value="<%= @the_clothing_category.category_name %>">
+      </div>
+
+      <button>
+        Update clothing category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
