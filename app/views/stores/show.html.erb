@@ -1,7 +1,9 @@
 <div>
   <div>
     <h1>
-      Store #<%= @the_store.id %> details
+      <%= @the_store.name %> details
+
+     <div> <img src="//logo.clearbit.com/prettylittlething.us"> </div>
     </h1>
 
     <div>
@@ -52,6 +54,92 @@
 
 <hr>
 
+<table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Store
+        </th>
+
+        <th>
+          Item url
+        </th>
+
+        <th>
+          Clothing category
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+
+        
+        </th>
+      </tr>
+
+      <h2> List of all items from <%=@the_store.name%> </h2>
+      <% @list_of_items.each do |an_item| %>
+      <tr>
+        <td>
+          <%= an_item.id %>
+        </td>
+
+        <td>
+          <%= an_item.description %>
+        </td>
+
+        <td>
+          <%= an_item.price %>
+        </td>
+
+        <td>
+          <%= an_item.store_name %>
+        </td>
+
+        <td>
+          <a href="<%= an_item.item_url %>"> View item </a>
+        </td>
+
+        <td>
+          <%= an_item.category %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_item.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_item.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/items/<%= an_item.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
 
 <div>
   <div>

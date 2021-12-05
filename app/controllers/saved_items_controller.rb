@@ -1,4 +1,6 @@
 class SavedItemsController < ApplicationController
+
+  #Bookmark
   def index
     matching_saved_items = SavedItem.all
 

@@ -14,6 +14,10 @@ class StoresController < ApplicationController
 
     @the_store = matching_stores.at(0)
 
+    matching_items = Item.all
+
+    @list_of_items = matching_items.order({ :created_at => :desc })
+
     render({ :template => "stores/show.html.erb" })
   end
 
