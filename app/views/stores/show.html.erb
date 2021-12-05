@@ -3,7 +3,7 @@
     <h1>
       <%= @the_store.name %> details
 
-     <div> <img src="//logo.clearbit.com/prettylittlething.us"> </div>
+     <div> <img src="//logo.clearbit.com/prettylittlething.us"></div>
     </h1>
 
     <div>
@@ -95,7 +95,11 @@
       </tr>
 
       <h2> List of all items from <%=@the_store.name%> </h2>
-      <% @list_of_items.each do |an_item| %>
+
+        <% matching_store_items = @list_of_items.where({:store_id => @the_store.id})%>
+        <% list_of_store_items = matching_store_items.order({ :created_at => :desc })%>
+        
+        <% list_of_store_items.each do |an_item| %>
       <tr>
         <td>
           <%= an_item.id %>
