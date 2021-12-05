@@ -2,7 +2,7 @@
   <div>
     <h1>
       <%= @the_store.name %> details
-
+      <% url_name = @the_store.name.downcase.gsub(/\s+/, "").to_s %>
      <div> <img src="//logo.clearbit.com/prettylittlething.us"></div>
     </h1>
 

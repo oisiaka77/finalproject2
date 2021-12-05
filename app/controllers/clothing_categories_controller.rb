@@ -14,6 +14,10 @@ class ClothingCategoriesController < ApplicationController
 
     @the_clothing_category = matching_clothing_categories.at(0)
 
+    matching_items = Item.all
+
+    @list_of_items = matching_items.order({ :created_at => :desc })
+
     render({ :template => "clothing_categories/show.html.erb" })
   end
 
