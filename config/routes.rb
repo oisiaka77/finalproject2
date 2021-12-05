@@ -84,6 +84,8 @@ Rails.application.routes.draw do
   post("/insert_saved_item", { :controller => "saved_items", :action => "create" })
           
   # READ
+
+  get("/", { :controller => "saved_items", :action=> "index"})
   get("/saved_items", { :controller => "saved_items", :action => "index" })
   
   get("/saved_items/:path_id", { :controller => "saved_items", :action => "show" })

@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
     the_item.item_url = params.fetch("query_item_url")
     the_item.clothing_category_id = params.fetch("query_clothing_category_id")
 
-    if the_item.valid?
+   if the_item.valid?
       the_item.save
       redirect_to("/items", { :notice => "Item created successfully." })
     else
