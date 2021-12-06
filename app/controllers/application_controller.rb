@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action(:load_current_user_info)
   
   # Uncomment this if you want to force user_infos to sign in before any other actions
-  # before_action(:force_user_info_sign_in)
+  before_action(:force_user_info_sign_in)
   
   def load_current_user_info
     the_id = session[:user_info_id]

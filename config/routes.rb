@@ -101,6 +101,11 @@ Rails.application.routes.draw do
 
   # Routes for the User info account:
 
+  get("/users",{:controller => "user_info_authentication", :action=> "index"})
+
+  get("/users/:path_id",{:controller => "user_info_authentication", :action=> "show"})
+  
+
   # SIGN UP FORM
   get("/user_info_sign_up", { :controller => "user_info_authentication", :action => "sign_up_form" })        
   # CREATE RECORD

@@ -87,4 +87,31 @@ class UserInfoAuthenticationController < ApplicationController
     redirect_to("/", { :notice => "UserInfo account cancelled" })
   end
  
+  def index
+
+    matching_users = UserInfo.all
+
+    @list_of_users = matching_users.order({ :created_at => :desc })
+
+
+    render("/user_info_authentication/index.html.erb")
+
+  end
+
+  def show
+    the_id = params.fetch("path_id")
+
+    matching_user = UserInfo.where({ :id => the_id })
+
+    @the_user = matching_user.at(0)
+
+    user_id = @the_user.id
+    list_of_saved_items = SavedItem.where({:user_id => user_id})
+    matching_saved_item = list_of_saved_items.at(0) 
+    the_item_id = matching_saved_item.item_id 
+    item_info = Item.where({:id => the_item_id}) 
+    @list_of_user_items = item_info.order({ :created_at => :desc }) 
+    
+    render({ :template => "user_info_authentication/show.html.erb" })
+  end
 end

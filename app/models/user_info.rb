@@ -31,4 +31,21 @@ class UserInfo < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
   has_secure_password
+
+
+
+  #Getting each users shopping portfolio by matching user id
+
+  def user_items
+    user_id = self.id
+    list_of_saved_items = SavedItem.where({:user_id => user_id})
+    matching_saved_item = list_of_saved_items.at(0) 
+    the_item_id = matching_saved_item.item_id 
+    item_info = Item.where({:id => the_item_id}) 
+    list_of_user_items = item_info.at(0)
+
+
+    return list_of_user_items
+
+  end
 end
