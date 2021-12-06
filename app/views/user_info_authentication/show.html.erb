@@ -50,9 +50,12 @@
 
   
 
-  <% @list_of_user_items.each do |an_item|%>
-
+  <% @list_of_saved_items.each do |saved_item|%>
+        <%the_item_id = saved_item.item_id%>
+        <%an_item = Item.where({:id => the_item_id}).at(0)%> 
+        
     <tr>
+
         <td>
           <%= an_item.id %>
         </td>

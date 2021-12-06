@@ -1,13 +1,13 @@
 class UserInfoAuthenticationController < ApplicationController
   # Uncomment this if you want to force user_infos to sign in before any other actions
-  # skip_before_action(:force_user_info_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
+  skip_before_action(:force_user_info_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
 
   def sign_in_form
     render({ :template => "user_info_authentication/sign_in.html.erb" })
   end
 
   def create_cookie
-    user_info = UserInfo.where({ :email => params.fetch("query_email") }).first
+    user_info = UserInfo.where({ :username => params.fetch("query_username") }).first
     
     the_supplied_password = params.fetch("query_password")
     
@@ -22,7 +22,7 @@ class UserInfoAuthenticationController < ApplicationController
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
-      redirect_to("/user_info_sign_in", { :alert => "No user_info with that email address." })
+      redirect_to("/user_info_sign_in", { :alert => "No user_info with that username." })
     end
   end
 
@@ -51,7 +51,7 @@ class UserInfoAuthenticationController < ApplicationController
     if save_status == true
       session[:user_info_id] = @user_info.id
    
-      redirect_to("/", { :notice => "User info account created successfully."})
+      redirect_to("/users/" + @user_info.id.to_s, { :notice => "User info account created successfully."})
     else
       redirect_to("/user_info_sign_up", { :alert => "User info account failed to create successfully."})
     end
@@ -106,11 +106,10 @@ class UserInfoAuthenticationController < ApplicationController
     @the_user = matching_user.at(0)
 
     user_id = @the_user.id
-    list_of_saved_items = SavedItem.where({:user_id => user_id})
-    matching_saved_item = list_of_saved_items.at(0) 
-    the_item_id = matching_saved_item.item_id 
-    item_info = Item.where({:id => the_item_id}) 
-    @list_of_user_items = item_info.order({ :created_at => :desc }) 
+    @list_of_saved_items = SavedItem.where({:user_id => user_id})
+
+
+    
     
     render({ :template => "user_info_authentication/show.html.erb" })
   end

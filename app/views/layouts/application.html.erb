@@ -14,7 +14,8 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
   </head>
-
+  <%= notice%>
+  <%= alert%>
   <nav>
     <ul>
       <li> <a href="/users"> List of users </a></li>
@@ -25,7 +26,12 @@
       <li><a href="/saved_items"> Saved items </a></li>
       <li><a href="/user_info_sign_up"> Sign up </a></li>
      <li> <a href="/user_info_sign_in"> Sign in </a></li>
+
+     <% if @current_user_info.present? %>
+
      <li> <a href="/edit_user_info_profile"> Edit user profile </a></li>
+
+      <% end %>
     </ul>
   </nav>
   <body>
