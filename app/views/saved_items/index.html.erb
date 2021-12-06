@@ -74,11 +74,16 @@
         </td>
 
         <td>
-          <%= a_saved_item.user_id %>
+          <% the_user_id = a_saved_item.user_id %>
+          <% matching_user = UserInfo.where({:id => the_user_id}) %>
+          <%= user = matching_user.at(0).username%>
+          
         </td>
 
         <td>
-          <%= a_saved_item.item_id %>
+          <%= the_item_id = a_saved_item.saved_item_description %>
+         
+
         </td>
 
         <td>

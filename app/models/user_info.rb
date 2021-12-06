@@ -34,7 +34,7 @@ class UserInfo < ApplicationRecord
 
 
 
-  #Getting each users shopping portfolio by matching user id
+  #Getting each users shopping portfolio by matching with a user id
 
   def user_items
     user_id = self.id
@@ -45,7 +45,7 @@ class UserInfo < ApplicationRecord
     list_of_user_items = item_info.at(0)
 
 
-    return list_of_user_items
+    return list_of_user_items.description
 
   end
 end
