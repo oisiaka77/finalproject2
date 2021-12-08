@@ -23,8 +23,8 @@ class Item < ApplicationRecord
  
   #Collects store id and returns store name
 
-    def store_name
-      store_id= self.store_id
+     def store_name
+       store_id= self.store_id
 
       matching_stores= Store.where({:id => store_id})
       
@@ -32,7 +32,7 @@ class Item < ApplicationRecord
        
         return the_store.name
         
-    end
+     end
 
     #Collects category id and returns category name
     def category

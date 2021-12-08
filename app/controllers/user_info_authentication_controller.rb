@@ -5,6 +5,21 @@ class UserInfoAuthenticationController < ApplicationController
   def sign_in_form
     render({ :template => "user_info_authentication/sign_in.html.erb" })
   end
+  def show
+    the_id = params.fetch("path_id")
+
+    matching_user = UserInfo.where({ :id => the_id })
+
+    @the_user = matching_user.at(0)
+
+    user_id = @the_user.id
+    @list_of_saved_items = SavedItem.where({:user_id => user_id})
+
+
+    
+    
+    render({ :template => "user_info_authentication/show.html.erb" })
+  end
 
   def create_cookie
     user_info = UserInfo.where({ :username => params.fetch("query_username") }).first
@@ -19,10 +34,10 @@ class UserInfoAuthenticationController < ApplicationController
       else
         session[:user_info_id] = user_info.id
       
-        redirect_to("/", { :notice => "Signed in successfully." })
+        redirect_to("/saved_stores_by_users", { :notice => "Signed in successfully." })
       end
     else
-      redirect_to("/user_info_sign_in", { :alert => "No user_info with that username." })
+      redirect_to("/user_info_sign_in", { :alert => "There is no user with that username." })
     end
   end
 
@@ -98,19 +113,5 @@ class UserInfoAuthenticationController < ApplicationController
 
   end
 
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_user = UserInfo.where({ :id => the_id })
-
-    @the_user = matching_user.at(0)
-
-    user_id = @the_user.id
-    @list_of_saved_items = SavedItem.where({:user_id => user_id})
-
-
-    
-    
-    render({ :template => "user_info_authentication/show.html.erb" })
-  end
+  
 end

@@ -21,9 +21,17 @@ class ItemsController < ApplicationController
     the_item = Item.new
     the_item.description = params.fetch("query_description")
     the_item.price = params.fetch("query_price")
-    the_item.store_id = params.fetch("query_store_id")
+
+    matching_store_name = Store.where({:name => params.fetch("query_store_name")})
+    
+
+    the_item.store_id = matching_store_name.at(0).id
+    
     the_item.item_url = params.fetch("query_item_url")
-    the_item.clothing_category_id = params.fetch("query_clothing_category_id")
+
+    matching_category_name = ClothingCategory.where({ :category_name => params.fetch("query_clothing_category_name")})
+
+    the_item.clothing_category_id = matching_category_name.at(0).id
 
    if the_item.valid?
       the_item.save

@@ -105,6 +105,11 @@ Rails.application.routes.draw do
 
   get("/users/:path_id",{:controller => "user_info_authentication", :action=> "show"})
   
+  # Stores Display Page
+
+  get("/saved_stores_by_users",{:controller => "stores", :action=> "display"})
+  
+
 
   # SIGN UP FORM
   get("/user_info_sign_up", { :controller => "user_info_authentication", :action => "sign_up_form" })        

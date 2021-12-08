@@ -14,5 +14,7 @@ class Store < ApplicationRecord
 
 
   has_many(:items, { :class_name => "Item", :foreign_key => "store_id", :dependent => :destroy })
+
+  validates(:name, { :presence => { :message => "This field can't be blank" } })
   
 end

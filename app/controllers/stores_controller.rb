@@ -1,4 +1,22 @@
 class StoresController < ApplicationController
+  def display
+    
+    #all_users = UserInfo.all
+
+    
+    #session[:user_info_id] 
+    #user_info = UserInfo.where({ :username => params.fetch("query_username") }).first
+
+    # user_id = user_info.id
+
+    # matching_saved_items = SavedItem.where({:id => user_id})
+    # saved_item_record_id = matching_saved_items.item_id 
+    # list_of_user_items = Item.where({:id=> saved_item_record_id})
+    # @list_of_items = matching_items.order({ :created_at => :desc })
+
+    render({:template => "stores/display.html.erb"})
+  end
+  
   def index
     matching_stores = Store.all
 

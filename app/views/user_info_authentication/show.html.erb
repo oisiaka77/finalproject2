@@ -2,7 +2,23 @@
 
 <h1><%=@the_user.username%></h1>
 
-<h2> Your Wish List </h2>
+<%# the_matching_user = SavedItem.where({:user_id => @the_user.id})%>
+
+
+<%# the_matching_user.each do |matching_saved_item_record|%>
+
+<%# list_of_item_id = matching_saved_item_record.item_id%>
+
+<%#=an_item = Item.where({:id => list_of_item_id}).at(0)%>
+
+<%#= an_item.store_id%> (store_id) - needs to be dynamic so that sotre id is fecthed and populated
+<%#end%>
+<%# item_info = Item.where({ :id => matching_item_record})%>
+
+<%# @list_of_saved_items.each do |saved_item|%>
+        <%#the_item_id = saved_item.item_id%>
+         
+<h2> Your (insert store) Wish List </h2>
 
 
 <hr>

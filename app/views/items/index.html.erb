@@ -32,11 +32,24 @@
       </div>
 
       <div>
-        <label for="store_id_box">
+        <label for="store_id_box" >
           Store
         </label>
+          
+   
+        
+        <select name="query_store_name" id="store_id_box">
+          <% Store.all.order(:title).each do |store|%>
+        <option>
+          <%= store.name%>
+          <%#= store.name%>
+        </option>
+        <%end%>
+        
+        
+        </select>
 
-        <input type="text" id="store_id_box" name="query_store_id">
+        <a href="/stores"> Add a new store </a>
       </div>
 
       <div>
@@ -45,6 +58,7 @@
         </label>
 
         <input type="text" id="item_url_box" name="query_item_url">
+        
       </div>
 
       <div>
@@ -52,7 +66,25 @@
           Clothing category
         </label>
 
-        <input type="text" id="clothing_category_id_box" name="query_clothing_category_id">
+        <select id="clothing_category_id_box" name="query_clothing_category_name">
+        
+          <% ClothingCategory.all.order(:title).each do |category|%>
+        
+
+         <option> 
+         
+         
+         <%= category.category_name%>
+        
+        <%end%>
+        </option>
+        </select>
+
+         
+
+          
+
+        <a href="/clothing_categories"> Add a new category </a>
       </div>
 
       <button>
@@ -60,6 +92,9 @@
       </button>
     </form>
   </div>
+
+
+  
 </div>
 
 <hr>
@@ -67,9 +102,7 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
+        
 
         <th>
           Description
@@ -105,9 +138,7 @@
 
       <% @list_of_items.each do |an_item| %>
       <tr>
-        <td>
-          <%= an_item.id %>
-        </td>
+        
 
         <td>
           <%= an_item.description %>
@@ -118,7 +149,8 @@
         </td>
 
         <td>
-          <%= an_item.store_name %>
+          <%= an_item.store_name%>
+         
         </td>
 
         <td>
