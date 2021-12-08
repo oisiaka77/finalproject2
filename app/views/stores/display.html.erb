@@ -2,7 +2,7 @@
 
 
 
-<% user_id = cookies.fetch(:user_id)%>
+<% user_id = session.fetch(:user_info_id)%>
 
 <% matching_user = UserInfo.where({ :id => user_id})%>
 
@@ -11,27 +11,32 @@
 
 <h1>Welcome, <%= the_user %>! </h1>
 
+
 <h3> Here are a few of the stores you've been shopping at: </h3>
 
-<% the_matching_user = SavedItem.where({:user_id => user_id})%>
-
-<% the_matching_user.each do |matching_item_record|%>
 
 
-<% the_item_id = matching_item_record.item_id%>
+<% variable_store_ids = matching_user.at(0).stores.ids.uniq %>
 
-<% item_info = Item.where({ :id => the_item_id})%>
+<% Store.where({ :id=> variable_store_ids}).each do |store|%>
 
-<a href ="/stores/<%=item_info.at(0).store_id%>"> <%= store_name  =  item_info.at(0).store_name%> </a>
 
+
+
+
+
+<p><a href ="/stores/<%=store.id%>"> <%= store.name%> </a></P>
+
+<%end%>
 <%#  store_id = item_info.at(0).store_id%>
 
 <%# Store.where({:id=> store_id}).at(0).name%>
 
 
-<%end%>
-    @list_of_saved_items = SavedItem.where({:user_id => user_id})
+
+    
     <%# @list_of_saved_items.each do |saved_item|%>
         <%#the_item_id = saved_item.item_id%>
         <%#an_item = Item.where({:id => the_item_id}).at(0)%> 
-<div><button><a href="/stores"> Add a new store you've been shopping at! </a></button></div>
+
+<div><button><a href="/users/<%=user_id%>"> Add a new item! </a></button></div>

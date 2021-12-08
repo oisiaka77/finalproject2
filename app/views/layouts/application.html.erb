@@ -14,9 +14,9 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
   </head>
- <%= notice%> <p>
-  <%= alert%>
-
+ 
+  
+  
   <nav>
     <ul>
       <li> <a href="/users"> List of users </a></li>
@@ -39,6 +39,10 @@
       <% end %>
     </ul>
   </nav>
+
+  <div style ="color: green"> <%= notice%> </div>
+
+    <div style ="color:red"> <%= alert%> </div>
   <body>
     <%= yield %>
   </body>

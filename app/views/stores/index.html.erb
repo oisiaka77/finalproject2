@@ -35,6 +35,13 @@
         Add store
       </button>
     </form>
+
+    <div>
+      <%user_id = session.fetch(:user_info_id)%>
+        <a href="/users/<%=user_id%>">
+          Go back
+        </a>
+      </div>
   </div>
 </div>
 
@@ -88,11 +95,7 @@
           <%= time_ago_in_words(a_store.updated_at) %> ago
         </td>
 
-        <td>
-          <a href="/stores/<%= a_store.id %>">
-            Show details
-          </a>
-        </td>
+        
       </tr>
       <% end %>
     </table>

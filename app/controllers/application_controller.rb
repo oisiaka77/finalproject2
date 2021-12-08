@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def load_current_user_info
     the_id = session[:user_info_id]
     @current_user_info = UserInfo.where({ :id => the_id }).first
-    cookies.store(:user_id, @current_user_info.id)
+    #cookies.store(:user_id, @current_user_info.id)
   end
   
   def force_user_info_sign_in

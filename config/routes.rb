@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_item", { :controller => "items", :action => "create" })
+
+  #post("/insert_user_item", { :controller => "items", :action => "creating" })
           
   # READ
   get("/items", { :controller => "items", :action => "index" })

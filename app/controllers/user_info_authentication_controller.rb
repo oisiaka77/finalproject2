@@ -89,7 +89,7 @@ class UserInfoAuthenticationController < ApplicationController
     if @user_info.valid?
       @user_info.save
 
-      redirect_to("/", { :notice => "User info account updated successfully."})
+      redirect_to("/saved_stores_by_users", { :notice => "User info account updated successfully."})
     else
       render({ :template => "user_info_authentication/edit_profile_with_errors.html.erb" })
     end

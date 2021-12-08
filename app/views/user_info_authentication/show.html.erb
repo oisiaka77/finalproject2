@@ -11,16 +11,107 @@
 
 <%#=an_item = Item.where({:id => list_of_item_id}).at(0)%>
 
-<%#= an_item.store_id%> (store_id) - needs to be dynamic so that sotre id is fecthed and populated
+<%#= an_item.store_id%> 
 <%#end%>
 <%# item_info = Item.where({ :id => matching_item_record})%>
 
 <%# @list_of_saved_items.each do |saved_item|%>
         <%#the_item_id = saved_item.item_id%>
          
-<h2> Your (insert store) Wish List </h2>
+<h2> List of all your items </h2>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new item
+    </h2>
+
+    <form action="/insert_item" method="post">
+      
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <div>
+        <label for="store_id_box" >
+          Store
+        </label>
+          
+   
+        
+        <select name="query_store_name" id="store_id_box">
+          <% Store.all.order(:title).each do |store|%>
+        <option>
+          <%= store.name%>
+          <%#= store.name%>
+        </option>
+        <%end%>
+        
+        
+        </select>
+
+        <a href="/stores"> Add a new store </a>
+      </div>
+
+      <div>
+        <label for="item_url_box">
+          Item url
+        </label>
+
+        <input type="text" id="item_url_box" name="query_item_url">
+        
+      </div>
+
+      <div>
+        <label for="clothing_category_id_box">
+          Clothing category
+        </label>
+
+        <select id="clothing_category_id_box" name="query_clothing_category_name">
+        
+          <% ClothingCategory.all.order(:title).each do |category|%>
+        
+
+         <option> 
+         
+         
+         <%= category.category_name%>
+        
+        <%end%>
+        </option>
+        </select>
+
+         
+
+          
+
+        <a href="/clothing_categories"> Add a new category </a>
+      </div>
+
+      <button>
+        Create item
+      </button>
+    </form>
+  </div>
 
 
+  
+</div>
 <hr>
 <div>
   <div>

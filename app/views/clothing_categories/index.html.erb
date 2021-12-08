@@ -26,7 +26,16 @@
       <button>
         Create clothing category
       </button>
+
+      
     </form>
+
+    <div>
+      <%user_id = session.fetch(:user_info_id)%>
+        <a href="/users/<%=user_id%>">
+          Go back
+        </a>
+      </div>
   </div>
 </div>
 
@@ -72,11 +81,7 @@
           <%= time_ago_in_words(a_clothing_category.updated_at) %> ago
         </td>
 
-        <td>
-          <a href="/clothing_categories/<%= a_clothing_category.id %>">
-            Show details
-          </a>
-        </td>
+        
       </tr>
       <% end %>
     </table>

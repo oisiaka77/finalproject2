@@ -18,6 +18,8 @@ class ItemsController < ApplicationController
   end
 
   def create
+
+    
     the_item = Item.new
     the_item.description = params.fetch("query_description")
     the_item.price = params.fetch("query_price")
@@ -32,12 +34,22 @@ class ItemsController < ApplicationController
     matching_category_name = ClothingCategory.where({ :category_name => params.fetch("query_clothing_category_name")})
 
     the_item.clothing_category_id = matching_category_name.at(0).id
+    
+    user_id = session.fetch(:user_info_id)
 
    if the_item.valid?
       the_item.save
-      redirect_to("/items", { :notice => "Item created successfully." })
+
+      saved_item = SavedItem.new
+
+      saved_item.user_id = user_id
+      saved_item.item_id = the_item.id
+
+      saved_item.save
+      
+      redirect_to("/users/#{user_id}", { :notice => "Item created successfully." })
     else
-      redirect_to("/items", { :notice => "Item failed to create successfully." })
+      redirect_to("/items/#{user_id}", { :notice => "Item failed to create successfully." })
     end
   end
 

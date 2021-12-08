@@ -8,7 +8,7 @@
 
     <div>
       <div>
-        <a href="/stores">
+        <a href="/saved_stores_by_users">
           Go back
         </a>
       </div>
@@ -17,6 +17,12 @@
         <a href="/delete_store/<%= @the_store.id %>">
           Delete store
         </a>
+      </div>
+
+      <div>
+        <% user_id = session.fetch(:user_info_id)%>
+
+        <button><a href="/users/<%=user_id%>"> Add a new item! </a></button>
       </div>
     </div>
 
@@ -96,28 +102,20 @@
 
       <h2> List of all your items from <%=@the_store.name%> </h2>
 
-        <% the_matching_user = SavedItem.where({:user_id => @the_user.id})%>
+        
 
-
-      <% the_matching_user.each do |matching_saved_item_record|%>
-
-      <% list_of_item_id = matching_saved_item_record.item_id%>
-
-      <%=an_item = Item.where({:id => list_of_item_id}).at(0)%>
-
-        <%#= if an_item.store_id = @the_store.id%>
-        <%= an_item.id %> (store_id) - needs to be dynamic so that sotre id is fecthed and populated
-        <%= an_item.description %>
         
         
-        <%#end%>
 
-      <%end%>
-        <% matching_store_items = @list_of_items.where({:store_id => @the_store.id})%>
-        <% list_of_store_items = matching_store_items.order({ :created_at => :desc })%>
-        
-        <% list_of_store_items.each do |an_item| %>
+
+      <hr>
+        <% the_user_id = session.fetch(:user_info_id)%>
+        <% user_record = UserInfo.where({:id => the_user_id}).at(0)%>
+
+
+        <% user_record.items.each do |an_item| %>
       <tr>
+        <% if an_item.store_id == @the_store.id %>
         <td>
           <%= an_item.id %>
         </td>
@@ -155,6 +153,7 @@
           </a>
         </td>
       </tr>
+      <%end%>
       <% end %>
     </table>
   </div>

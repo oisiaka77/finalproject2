@@ -20,6 +20,10 @@ class UserInfo < ApplicationRecord
 
   has_many(:saved_items, { :class_name => "SavedItem", :foreign_key => "user_id", :dependent => :destroy })
 
+  has_many(:items, { :through => :saved_items, :source => :item })
+
+  has_many(:stores, { :through => :items, :source => :the_store })
+
   validates(:username, { :presence => true })
   validates(:username, { :uniqueness => true })
 

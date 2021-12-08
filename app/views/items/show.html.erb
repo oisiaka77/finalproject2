@@ -6,7 +6,8 @@
 
     <div>
       <div>
-        <a href="/items">
+      <%user_id = session.fetch(:user_info_id)%>
+        <a href="/users/<%=user_id%>">
           Go back
         </a>
       </div>
